@@ -1,0 +1,36 @@
+{
+ "slug": "anodo-de-magnesio",
+ "cat": "mantencion",
+ "read": 4,
+ "date": "25 de septiembre de 2026",
+ "asked": "¿Qué es el ánodo de magnesio?",
+ "title": "El ánodo de magnesio: la pieza barata que salva tu termo",
+ "dek": "Es una barra que se gasta a propósito para que el estanque no se oxide. Cuando se acaba, empieza la cuenta regresiva.",
+ "keys": "anodo ánodo magnesio corrosion oxido barra cambio",
+ "quick": "El ánodo de magnesio es una barra metálica dentro del termo que <strong>se corroe en lugar del estanque</strong>. Se debe <strong>revisar en cada mantención</strong> y cambiar cuando está muy consumido, lo que en Santiago suele pasar entre el primer y el tercer año.",
+ "body": "<h2>Cómo funciona</h2>\n<p>El agua caliente es corrosiva para el acero. El magnesio es un metal que se corroe con más facilidad, así que, al estar dentro del estanque, el agua lo ataca primero a él. Es lo que se llama protección por ánodo de sacrificio: la barra se va gastando para que el estanque no lo haga.</p>\n<h2>Qué pasa cuando se termina</h2>\n<p>Un ánodo nuevo es una barra lisa y pareja. Uno gastado queda delgado, con hoyos, o solo queda el alambre central. Desde ese momento ya no protege, y el óxido empieza en las soldaduras y en el fondo del estanque.</p>\n<!--AD1-->\n<h2>Señales de un ánodo agotado</h2>\n<ul><li>Agua con tono café o rojizo al abrir el agua caliente.</li><li>Olor a huevo podrido en el agua caliente (ver el artículo sobre el mal olor).</li><li>Manchas de óxido en la parte baja del termo.</li></ul>\n<div class=\"note\">Cambiar el ánodo cuesta una fracción de lo que vale un termo nuevo. Es la razón principal para no saltarse la mantención anual.</div>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Todos los termos tienen ánodo?",
+   "La gran mayoría de los termos eléctricos con estanque de acero vitrificado o esmaltado lo tienen."
+  ],
+  [
+   "¿El ánodo se puede limpiar en vez de cambiar?",
+   "No. Si está gastado, ya perdió el material que protege. Se reemplaza."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Cuándo se revisó tu ánodo por última vez?",
+   "p": "En cada mantención lo revisamos y, si hace falta, lo cambiamos en la misma visita.",
+   "msg": "Hola Elemental, quiero revisar el ánodo de mi termo.",
+   "side": "Revisión de ánodo incluida",
+   "sideP": "La mantención preventiva incluye la revisión del ánodo. Lo cambiamos en la misma visita si está gastado."
+  },
+  {
+   "t": "Protege tu termo antes de que se oxide",
+   "p": "Mantención preventiva desde $54.990, con revisión de ánodo, termostato y conexiones.",
+   "msg": "Hola Elemental, quiero agendar una mantención con revisión de ánodo."
+  }
+ ]
+}

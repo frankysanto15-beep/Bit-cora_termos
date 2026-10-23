@@ -1,0 +1,36 @@
+{
+ "slug": "termo-gotea",
+ "cat": "fallas",
+ "read": 5,
+ "date": "2 de octubre de 2026",
+ "asked": "Mi termo gotea, ¿qué hago?",
+ "title": "Mi termo gotea: cuándo es normal y cuándo es urgente",
+ "dek": "Unas gotas por la válvula de seguridad pueden ser parte del funcionamiento. Una gotera desde el cuerpo del termo, no.",
+ "keys": "gotea fuga filtracion agua valvula seguridad estanque perforado oxido",
+ "quick": "Si gotea <strong>solo por la válvula de seguridad mientras calienta</strong>, puede ser normal: el agua se dilata y la válvula libera presión. Si el agua sale <strong>por debajo del termo, por la tapa o por el cuerpo</strong>, corta el agua y la energía y llama a un técnico.",
+ "body": "<h2>Primero, ubica de dónde sale el agua</h2>\n<p>Seca bien la zona con un paño y observa unos minutos. No es lo mismo una gota en la salida de la válvula que agua corriendo por el costado del termo.</p>\n<div class=\"spec\"><table><thead><tr><th>Dónde gotea</th><th>Qué suele ser</th><th>Urgencia</th></tr></thead><tbody>\n<tr><td>Válvula de seguridad, solo al calentar</td><td>Alivio de presión por dilatación del agua</td><td>Normal</td></tr>\n<tr><td>Válvula de seguridad, todo el día</td><td>Válvula dañada o presión de red alta</td><td>Revisar pronto</td></tr>\n<tr><td>Uniones de cañería</td><td>Conexión suelta o teflón gastado</td><td>Revisar pronto</td></tr>\n<tr><td>Tapa inferior (donde está la resistencia)</td><td>Empaquetadura de la brida gastada</td><td>Urgente</td></tr>\n<tr><td>Cuerpo del termo, con óxido</td><td>Estanque perforado por corrosión</td><td>Urgente</td></tr>\n</tbody></table></div>\n<!--AD1-->\n<h2>Qué hacer mientras llega el técnico</h2>\n<ol><li>Corta la energía del termo desde el tablero.</li><li>Cierra la llave de paso de agua fría que entra al termo.</li><li>Pon un recipiente o toallas para proteger el piso y los enchufes cercanos.</li><li>Si el agua cae cerca de enchufes o de la tapa eléctrica, no toques el termo.</li></ol>\n<h2>¿Se puede reparar?</h2>\n<p>Si la fuga está en la válvula, en una unión o en la empaquetadura de la tapa, sí: son piezas que se cambian. Si el estanque está perforado, la reparación no es segura ni durable y lo correcto es reemplazar el termo. Para evitar llegar a eso, la clave es la mantención y el cambio del ánodo a tiempo.</p>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿La válvula de seguridad se puede tapar para que no gotee?",
+   "Nunca. La válvula evita que el estanque acumule presión. Taparla es peligroso."
+  ],
+  [
+   "¿Por qué gotea más en la mañana?",
+   "Porque es cuando el termo calienta después de las duchas de la noche y el agua se dilata."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Encontraste agua bajo el termo?",
+   "p": "Corta la energía y el agua, y escríbenos. Revisamos válvulas, uniones y empaquetaduras.",
+   "msg": "Hola Elemental, mi termo está goteando. ¿Pueden revisarlo?",
+   "side": "¿Tu termo está goteando?",
+   "sideP": "Te ayudamos a saber si es normal o urgente. Escríbenos con una foto de dónde sale el agua."
+  },
+  {
+   "t": "Mándanos una foto de la gotera",
+   "p": "Con una foto por WhatsApp te orientamos al tiro y coordinamos la visita si hace falta.",
+   "msg": "Hola Elemental, les mando foto de una gotera en mi termo."
+  }
+ ]
+}

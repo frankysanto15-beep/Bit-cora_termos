@@ -1,0 +1,36 @@
+{
+ "slug": "termo-gasta-luz",
+ "cat": "ahorro",
+ "read": 6,
+ "date": "11 de septiembre de 2026",
+ "asked": "¿El termo gasta mucha luz?",
+ "title": "¿Cuánta luz gasta un termo eléctrico y cómo bajar la cuenta?",
+ "dek": "El termo suele ser uno de los equipos que más consume en la casa. Con cuatro ajustes simples se nota en la boleta.",
+ "keys": "consumo luz electricidad gasto boleta ahorro temperatura kwh",
+ "quick": "El consumo depende de cuánta agua caliente usas, pero el termo suele ser <strong>uno de los equipos que más energía gasta en la casa</strong>. Para bajarlo: deja el termostato <strong>entre 55 y 60 °C</strong>, mantén el estanque <strong>sin sarro</strong>, revisa que no haya goteos de agua caliente y evita que el termo esté encendido cuando la casa está vacía por varios días.",
+ "body": "<h2>De qué depende el consumo</h2>\n<p>Un termo gasta energía en dos momentos: cuando calienta el agua que usaste y cuando mantiene caliente el agua guardada, porque el estanque pierde calor de a poco. Por eso influyen la cantidad de duchas, la temperatura a la que lo tienes y lo bien aislado que esté.</p>\n<h2>Cuatro ajustes que sí se notan</h2>\n<h3>Temperatura entre 55 y 60 °C</h3>\n<p>Más arriba gasta más y acelera el sarro. Más abajo de 50 °C no conviene, porque el agua tibia guardada favorece la aparición de bacterias. Entre 55 y 60 °C está el equilibrio.</p>\n<h3>Estanque sin sarro</h3>\n<p>Con sarro, la resistencia necesita estar más tiempo encendida para calentar la misma agua. Una mantención al año evita ese gasto extra.</p>\n<!--AD1-->\n<h3>Sin goteos de agua caliente</h3>\n<p>Una llave de agua caliente que gotea es agua que el termo tiene que volver a calentar, todo el día.</p>\n<h3>Apagarlo cuando no hay nadie</h3>\n<p>Si sales de vacaciones, apágalo desde el tablero. Para el día a día no conviene prenderlo y apagarlo varias veces, porque recalentar el estanque completo también gasta.</p>\n<div class=\"note\">Si la cuenta subió de un mes a otro sin cambios en la casa, revisa el termo: una resistencia con sarro o un termostato que no corta hacen que trabaje de más.</div>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Conviene apagar el termo en la noche?",
+   "En general no. El agua guardada se enfría y en la mañana el termo gasta energía en recalentar todo el estanque."
+  ],
+  [
+   "¿Un termo más grande gasta más?",
+   "Mantener más litros calientes gasta algo más, pero un termo chico para la familia también gasta, porque calienta todo el tiempo. Lo ideal es la capacidad justa."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Subió la cuenta de la luz?",
+   "p": "Revisamos termostato, resistencia y sarro. Un termo limpio calienta más rápido y gasta menos.",
+   "msg": "Hola Elemental, mi termo está gastando mucha luz. ¿Pueden revisarlo?",
+   "side": "Un termo limpio gasta menos",
+   "sideP": "La mantención saca el sarro que obliga a la resistencia a trabajar de más."
+  },
+  {
+   "t": "Ahorra desde la próxima boleta",
+   "p": "Mantención preventiva: termo a muro $54.990, termo a piso $74.990.",
+   "msg": "Hola Elemental, quiero agendar una mantención para ahorrar luz."
+  }
+ ]
+}

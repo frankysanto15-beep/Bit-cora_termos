@@ -1,0 +1,32 @@
+{
+ "slug": "agua-cafe-o-mal-olor",
+ "cat": "fallas",
+ "read": 5,
+ "date": "28 de agosto de 2026",
+ "asked": "Agua café o con mal olor",
+ "title": "El agua caliente sale café o con olor a huevo podrido",
+ "dek": "Dos síntomas muy distintos que vienen del mismo lugar: el interior del estanque.",
+ "keys": "agua cafe café color oxido olor huevo podrido azufre mal olor",
+ "quick": "El <strong>agua café</strong> normalmente es óxido o sedimento del estanque, señal de que el ánodo está gastado o de que hace tiempo no se limpia. El <strong>olor a huevo podrido</strong> suele venir de bacterias que reaccionan con el ánodo en agua tibia o estancada. Ambos se resuelven con una mantención y, a veces, con cambio de ánodo.",
+ "body": "<h2>Si sale café o rojiza</h2>\n<p>Abre solo el agua fría. Si sale limpia, el problema está en el termo. Si también sale café, puede ser la red de agua o la cañería de la casa.</p>\n<p>Dentro del termo, el color viene del sedimento acumulado en el fondo o del óxido que aparece cuando el ánodo ya no protege. Lo primero es vaciar y limpiar el estanque y revisar el ánodo.</p>\n<!--AD1-->\n<h2>Si huele a huevo podrido</h2>\n<p>Ese olor es ácido sulfhídrico. Lo producen bacterias que viven en el agua y que se multiplican cuando el agua del termo está tibia o lleva días sin usarse, como después de unas vacaciones. Reaccionan con el ánodo de magnesio y generan el olor.</p>\n<ul><li>Sube el termostato a 60 °C por algunas horas y deja correr el agua caliente.</li><li>Si el olor vuelve, hace falta vaciar, limpiar el estanque y evaluar el ánodo.</li></ul>\n<div class=\"note\">Si el olor aparece en el agua fría también, no es el termo. Conviene avisar a la empresa de agua.</div>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Es peligroso ducharse con agua café?",
+   "En general no es tóxico, pero mancha la ropa y es señal de que el termo está deteriorándose por dentro."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Agua café o con mal olor?",
+   "p": "Vaciamos, limpiamos el estanque y revisamos el ánodo. El agua vuelve a salir limpia.",
+   "msg": "Hola Elemental, el agua caliente me sale café o con mal olor.",
+   "side": "¿El agua sale con color?",
+   "sideP": "Limpieza de estanque y revisión de ánodo en tu casa. Escríbenos y coordinamos."
+  },
+  {
+   "t": "Agua limpia otra vez",
+   "p": "Mantención completa del termo con técnicos calificados, en Santiago.",
+   "msg": "Hola Elemental, quiero agendar una limpieza de mi termo."
+  }
+ ]
+}

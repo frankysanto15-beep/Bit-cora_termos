@@ -1,0 +1,40 @@
+{
+ "slug": "termo-no-calienta",
+ "cat": "fallas",
+ "read": 7,
+ "date": "9 de octubre de 2026",
+ "asked": "¿Por qué mi termo no calienta?",
+ "title": "¿Por qué mi termo no calienta? Las 6 causas más comunes",
+ "dek": "Antes de pensar que hay que cambiarlo, revisa estas causas. Varias se solucionan sin gastar en un equipo nuevo.",
+ "keys": "no calienta agua fria tibia resistencia termostato automatico limitador",
+ "quick": "Las causas más frecuentes son: <strong>el automático del tablero cortado</strong>, el <strong>limitador de seguridad activado</strong>, un <strong>termostato dañado</strong>, una <strong>resistencia quemada</strong> o cubierta de sarro, y una llave mezcladora en mal estado. Revisa primero el tablero; si está bien, lo más probable es una pieza interna.",
+ "body": "<h2>1. No le está llegando electricidad</h2>\n<p>Parece obvio, pero es lo primero que revisamos. Ve al tablero eléctrico y mira si el automático del termo está abajo. Si lo subes y vuelve a bajar solo, no insistas: hay una falla eléctrica, normalmente en la resistencia, y seguir intentándolo puede ser peligroso.</p>\n<h2>2. Se activó el limitador de seguridad</h2>\n<p>Los termos tienen un termostato de seguridad que corta la energía si el agua se calienta de más. Cuando se activa, el termo queda encendido pero no calienta. Se puede rearmar, pero si se activó es porque algo falló: casi siempre el termostato principal. Rearmarlo sin revisar la causa es dejar el problema escondido.</p>\n<h2>3. El termostato dejó de funcionar</h2>\n<p>El termostato es el que le dice a la resistencia cuándo prender y cuándo apagar. Si falla, el termo no calienta nada o calienta poco. Se cambia por uno compatible con el modelo; no hace falta cambiar el termo.</p>\n<!--AD1-->\n<h2>4. La resistencia está quemada</h2>\n<p>La resistencia es la pieza que calienta el agua. Con los años, y sobre todo si nunca se le sacó el sarro, termina cortándose. A veces además hace saltar el diferencial del tablero. Se mide con un multímetro y, si está cortada, se reemplaza.</p>\n<h2>5. El sarro está aislando la resistencia</h2>\n<p>Aquí el termo sí calienta, pero lento y poco. La capa de sarro funciona como un abrigo alrededor de la resistencia: el calor se queda ahí en vez de pasar al agua. El síntoma típico es un ruido de burbujeo o crujido mientras calienta.</p>\n<h2>6. El problema no está en el termo</h2>\n<p>Si el termo está caliente al tacto pero en la ducha sale tibia, puede ser la llave mezcladora o un retorno de agua fría en la cañería. También pasa cuando el termo quedó chico para la familia: se acaba el agua caliente antes de terminar las duchas.</p>\n<h3>Lo que puedes revisar sin herramientas</h3>\n<ul class=\"check\"><li>El automático del termo en el tablero.</li><li>Que la perilla del termostato no esté en el mínimo.</li><li>Si el agua sale tibia solo en una llave o en toda la casa.</li><li>Si el termo hace ruido al calentar.</li></ul>\n<div class=\"note\">No abras la tapa del termo con la energía conectada. La resistencia y el termostato trabajan a 220 V.</div>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Cuánto tarda en calentar un termo normal?",
+   "Depende de la capacidad y la potencia, pero un termo de 80 a 100 litros suele tardar entre 2 y 4 horas en calentar desde frío. Si tarda mucho más que antes, hay que revisarlo."
+  ],
+  [
+   "¿Conviene reparar o cambiar el termo?",
+   "Si el estanque no tiene filtraciones, cambiar la resistencia o el termostato casi siempre sale bastante más barato que un termo nuevo."
+  ],
+  [
+   "Mi termo calienta, pero el agua caliente dura poco. ¿Es la misma falla?",
+   "Puede ser sarro acumulado, una resistencia que trabaja a medias o un termo pequeño para la cantidad de personas."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Sigue saliendo fría?",
+   "p": "Medimos resistencia, termostato y limitador en tu casa y te decimos qué falla antes de cambiar nada.",
+   "msg": "Hola Elemental, mi termo no está calentando. ¿Pueden revisarlo?",
+   "side": "¿Tu termo no calienta?",
+   "sideP": "Diagnóstico en tu casa por técnicos calificados. Te explicamos qué tiene antes de cambiar cualquier pieza."
+  },
+  {
+   "t": "Que vuelva el agua caliente hoy",
+   "p": "Reparación de resistencias, termostatos y limitadores. Escríbenos y coordinamos la visita.",
+   "msg": "Hola Elemental, necesito reparar mi termo. No calienta."
+  }
+ ]
+}

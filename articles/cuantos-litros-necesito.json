@@ -1,0 +1,32 @@
+{
+ "slug": "cuantos-litros-necesito",
+ "cat": "ahorro",
+ "read": 4,
+ "date": "21 de agosto de 2026",
+ "asked": "¿De cuántos litros debe ser mi termo?",
+ "title": "¿De cuántos litros debe ser mi termo? Guía rápida por familia",
+ "dek": "Un termo chico se queda corto en la tercera ducha. Uno demasiado grande gasta en mantener agua que nadie usa.",
+ "keys": "litros capacidad tamaño personas familia comprar elegir",
+ "quick": "Como referencia: <strong>1 a 2 personas, 50 a 80 litros</strong>; <strong>3 a 4 personas, 100 a 120 litros</strong>; <strong>5 o más, 150 litros o más</strong>. Ajusta hacia arriba si en tu casa se ducha casi todos a la misma hora.",
+ "body": "<h2>Tabla de referencia</h2>\n<div class=\"spec\"><table><thead><tr><th>Personas en la casa</th><th>Capacidad sugerida</th></tr></thead><tbody>\n<tr><td>1 a 2</td><td class=\"num\">50–80 L</td></tr>\n<tr><td>3 a 4</td><td class=\"num\">100–120 L</td></tr>\n<tr><td>5 o más</td><td class=\"num\">150 L o más</td></tr>\n</tbody></table></div>\n<h2>Lo que cambia la cuenta</h2>\n<ul><li><strong>Horario:</strong> si todos se duchan en la mañana, necesitas más litros que si las duchas se reparten en el día.</li><li><strong>Tina:</strong> llenar una tina usa mucha más agua caliente que una ducha.</li><li><strong>Espacio:</strong> los termos a piso permiten más capacidad; los de muro ahorran espacio en logias chicas.</li></ul>\n<!--AD1-->\n<h2>Muro o piso</h2>\n<p>El termo a muro es el más común en departamentos. El de piso se usa cuando se necesitan más litros o el muro no soporta el peso. Ambos necesitan la misma mantención, con distinto trabajo de desmontaje.</p>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Puedo cambiar mi termo por uno más grande?",
+   "Sí, siempre que el muro o el piso soporten el peso con agua y el circuito eléctrico esté preparado para la potencia del nuevo equipo."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Tu termo quedó chico?",
+   "p": "Te asesoramos con la capacidad correcta y hacemos la instalación completa.",
+   "msg": "Hola Elemental, quiero cotizar la instalación de un termo.",
+   "side": "¿Instalación o cambio de termo?",
+   "sideP": "Cotizamos la instalación por WhatsApp según el espacio y la capacidad que necesitas."
+  },
+  {
+   "t": "Cotiza tu instalación",
+   "p": "Venta e instalación de termos eléctricos. Escríbenos con una foto de tu logia.",
+   "msg": "Hola Elemental, quiero cotizar un termo nuevo con instalación."
+  }
+ ]
+}

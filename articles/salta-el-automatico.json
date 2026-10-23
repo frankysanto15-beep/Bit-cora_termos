@@ -1,0 +1,32 @@
+{
+ "slug": "salta-el-automatico",
+ "cat": "seguridad",
+ "read": 5,
+ "date": "4 de septiembre de 2026",
+ "asked": "Salta el automático con el termo",
+ "title": "Salta el automático o el diferencial cuando enciendo el termo",
+ "dek": "Es la protección del tablero haciendo su trabajo. Lo que hay que averiguar es por qué.",
+ "keys": "salta automatico diferencial tablero corto circuito tierra resistencia humedad",
+ "quick": "Si salta el <strong>diferencial</strong>, lo más común es una <strong>fuga a tierra en la resistencia</strong> (la resistencia está dañada y deja pasar corriente al agua o al estanque). Si salta el <strong>automático</strong>, puede ser un cortocircuito o un cable sobrecargado. En ambos casos, <strong>no lo sigas subiendo</strong>: deja el termo apagado y llama a un técnico.",
+ "body": "<h2>Automático y diferencial no son lo mismo</h2>\n<p>El <strong>automático</strong> corta cuando pasa más corriente de la que el circuito soporta, por ejemplo en un cortocircuito. El <strong>diferencial</strong> corta cuando detecta que una parte de la corriente se está yendo a tierra, que es justamente lo que pasaría si tocaras algo energizado. Es la protección que cuida a las personas.</p>\n<h2>Causas más frecuentes</h2>\n<ul><li><strong>Resistencia dañada:</strong> la causa número uno. Con el sarro y los años, la cubierta de la resistencia se fisura y la corriente se fuga.</li><li><strong>Humedad en la tapa eléctrica:</strong> una filtración por la empaquetadura moja las conexiones.</li><li><strong>Cables o terminales quemados:</strong> conexiones flojas que se calientan.</li><li><strong>Circuito compartido:</strong> el termo comparte circuito con otros equipos de alto consumo.</li></ul>\n<!--AD1-->\n<h2>Por qué no hay que insistir</h2>\n<p>Cada vez que subes el diferencial y vuelve a bajar, la protección está evitando un riesgo real. Si alguien desconecta o puentea el diferencial para que el termo funcione, el termo puede quedar energizado. Es una situación peligrosa en un baño o una logia con agua.</p>\n<div class=\"note\">Si sientes un cosquilleo al tocar una llave de agua caliente o la ducha, corta la energía del termo de inmediato y no uses el agua caliente hasta que se revise.</div>\n<h2>Qué revisa el técnico</h2>\n<ul class=\"check\"><li>Aislación de la resistencia con instrumento de medición.</li><li>Estado de la tapa eléctrica, termostato y terminales.</li><li>Conexión a tierra del termo.</li><li>Protección y sección del cable del circuito.</li></ul>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Puedo usar el termo si salta solo a veces?",
+   "No es recomendable. Una fuga intermitente suele empeorar. Mejor revisarlo antes de que se vuelva permanente."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Se corta la luz al prender el termo?",
+   "p": "Medimos la aislación de la resistencia y revisamos la conexión a tierra. Seguridad primero.",
+   "msg": "Hola Elemental, me salta el diferencial cuando prendo el termo.",
+   "side": "¿Salta el tablero?",
+   "sideP": "Revisión eléctrica de seguridad por técnicos calificados. No lo sigas subiendo: escríbenos."
+  },
+  {
+   "t": "Revisión eléctrica de tu termo",
+   "p": "Resistencia, termostato, terminales y tierra. Te dejamos el termo funcionando y seguro.",
+   "msg": "Hola Elemental, necesito una revisión eléctrica de mi termo."
+  }
+ ]
+}

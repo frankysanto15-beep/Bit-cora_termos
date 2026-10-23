@@ -1,0 +1,32 @@
+{
+ "slug": "termo-hace-ruido",
+ "cat": "fallas",
+ "read": 4,
+ "date": "18 de septiembre de 2026",
+ "asked": "Mi termo hace ruido",
+ "title": "Mi termo hace ruido al calentar: qué significa cada sonido",
+ "dek": "Burbujeo, crujidos, golpes o un zumbido. Cada ruido dice algo distinto sobre lo que pasa dentro.",
+ "keys": "ruido sonido burbujeo crujido golpeteo zumbido hierve",
+ "quick": "El ruido más común es un <strong>burbujeo o crujido</strong> al calentar, y casi siempre es <strong>sarro acumulado</strong> sobre la resistencia y el fondo. Un <strong>zumbido eléctrico</strong> o un olor a quemado, en cambio, requieren cortar la energía y llamar a un técnico.",
+ "body": "<h2>Burbujeo o crujido</h2>\n<p>Es el sonido de agua que queda atrapada bajo la capa de sarro, se calienta de golpe y se escapa en burbujas. El termo sigue funcionando, pero trabaja más y gasta más energía. Se soluciona con una mantención.</p>\n<h2>Golpes en las cañerías</h2>\n<p>Cuando se cierra una llave de golpe, el agua frena de repente y golpea la cañería. No es del termo, aunque se escuche cerca. Si se repite mucho, conviene revisar la presión de la red.</p>\n<!--AD1-->\n<h2>Zumbido o chisporroteo</h2>\n<p>Un zumbido eléctrico cerca de la tapa inferior puede indicar una conexión floja o un termostato dañado. Si viene con olor a quemado o el automático salta, corta la energía y no lo vuelvas a encender hasta que lo revise un técnico.</p>\n<h2>Silbido</h2>\n<p>Suele venir de la válvula de seguridad liberando presión o de una llave mezcladora casi cerrada. Es poco común que sea grave, pero vale la pena revisarlo.</p>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Es peligroso que el termo haga ruido?",
+   "El burbujeo no es peligroso por sí solo, pero indica sarro, y el sarro acorta la vida de la resistencia. El zumbido eléctrico sí requiere atención inmediata."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Burbujeo al calentar?",
+   "p": "Casi siempre es sarro. Lo sacamos y tu termo vuelve a calentar como antes.",
+   "msg": "Hola Elemental, mi termo hace ruido al calentar.",
+   "side": "¿Tu termo suena raro?",
+   "sideP": "Cuéntanos qué ruido hace y te decimos si es sarro, una pieza suelta o algo eléctrico."
+  },
+  {
+   "t": "Que vuelva el silencio",
+   "p": "Limpieza de sarro, revisión de resistencia y chequeo eléctrico en una sola visita.",
+   "msg": "Hola Elemental, quiero agendar una limpieza de sarro."
+  }
+ ]
+}

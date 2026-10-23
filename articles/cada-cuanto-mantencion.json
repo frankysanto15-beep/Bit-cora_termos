@@ -1,0 +1,40 @@
+{
+ "slug": "cada-cuanto-mantencion",
+ "cat": "mantencion",
+ "read": 6,
+ "date": "14 de octubre de 2026",
+ "asked": "¿Cada cuánto se hace la mantención?",
+ "title": "¿Cada cuánto se debe hacer la mantención de un termo eléctrico?",
+ "dek": "La regla general es una vez al año, pero en Santiago el agua dura acorta los plazos. Te explicamos cómo saber cuándo le toca al tuyo.",
+ "keys": "mantencion mantención cada cuanto frecuencia anual limpieza sarro anodo",
+ "quick": "Lo recomendable es <strong>una mantención cada 12 meses</strong>. Si vives en una zona de agua dura (gran parte de Santiago), el termo tiene más de 5 años o notas que calienta menos, conviene hacerla <strong>cada 6 a 9 meses</strong>.",
+ "body": "<h2>Por qué un termo necesita mantención</h2>\n<p>Dentro del estanque pasan dos cosas todo el tiempo. La primera es que el agua deja minerales: el calcio y el magnesio se separan al calentarse y se van al fondo en forma de sarro. La segunda es que el estanque de acero se protege de la corrosión gracias a una barra de metal llamada <strong>ánodo de magnesio</strong>, que se va gastando a propósito para que no se oxide el estanque.</p>\n<p>Cuando nadie revisa el termo, el sarro cubre la resistencia y el ánodo se consume por completo. Desde ese momento el agua empieza a atacar el estanque, y una perforación del estanque no tiene arreglo: hay que cambiar el equipo.</p>\n<h2>La frecuencia según tu caso</h2>\n<div class=\"spec\"><table><thead><tr><th>Situación</th><th>Frecuencia sugerida</th></tr></thead><tbody>\n<tr><td>Termo nuevo, agua blanda, 1 a 2 personas</td><td class=\"num\">cada 12 meses</td></tr>\n<tr><td>Agua dura (sarro blanco en llaves y hervidor)</td><td class=\"num\">cada 6–9 meses</td></tr>\n<tr><td>Familia de 4 o más personas, uso intenso</td><td class=\"num\">cada 6–9 meses</td></tr>\n<tr><td>Termo de más de 5 años sin mantención previa</td><td class=\"num\">lo antes posible</td></tr>\n</tbody></table></div>\n<p>Una forma práctica de saber si tu agua es dura: mira el interior del hervidor. Si tiene una capa blanca que vuelve a aparecer a las pocas semanas de limpiarla, el termo está acumulando lo mismo.</p>\n<!--AD1-->\n<h2>Qué incluye una mantención bien hecha</h2>\n<ul class=\"check\">\n<li>Corte de energía y de agua, y vaciado completo del estanque.</li>\n<li>Retiro del sarro acumulado en el fondo y limpieza de la resistencia.</li>\n<li>Revisión del ánodo de magnesio y cambio si está consumido.</li>\n<li>Revisión del termostato y del limitador de seguridad.</li>\n<li>Revisión de la válvula de seguridad y de las conexiones de agua.</li>\n<li>Chequeo eléctrico: aislación de la resistencia, conexión a tierra y estado de los cables.</li>\n<li>Llenado, purga de aire y prueba de funcionamiento.</li>\n</ul>\n<div class=\"note\">Si al vaciar el termo sale agua café o con trozos, no es una mala señal en sí: es justamente lo que la mantención viene a sacar. Lo preocupante es cuando el agua sale café en la ducha.</div>\n<h2>Señales de que ya se pasó la fecha</h2>\n<ul>\n<li>El agua caliente dura menos que antes.</li>\n<li>El termo hace ruidos de burbujeo o golpeteo al calentar.</li>\n<li>El agua sale con color o con olor extraño.</li>\n<li>Tarda más en calentar y la cuenta de la luz subió.</li>\n</ul>\n<!--AD2-->",
+ "faq": [
+  [
+   "¿Puedo hacer la mantención yo mismo?",
+   "Vaciar el termo es posible, pero desmontar la resistencia y el ánodo implica trabajar con conexiones eléctricas y empaquetaduras que, mal instaladas, provocan filtraciones. Recomendamos que lo haga un técnico calificado."
+  ],
+  [
+   "¿Cuánto demora la mantención?",
+   "Entre una hora y media y dos horas y media, según el tamaño del termo y la cantidad de sarro."
+  ],
+  [
+   "¿La mantención sirve si el termo ya tiene años?",
+   "Sí. Si el estanque no está perforado, limpiarlo y cambiar el ánodo alarga su vida útil y mejora el rendimiento."
+  ]
+ ],
+ "ads": [
+  {
+   "t": "¿Hace más de un año que no se revisa?",
+   "p": "Hacemos la mantención completa en tu casa: limpieza, ánodo, termostato y chequeo eléctrico.",
+   "msg": "Hola Elemental, quiero agendar la mantención de mi termo.",
+   "side": "¿Le toca mantención a tu termo?",
+   "sideP": "Agenda con técnicos calificados. Te avisamos qué encontramos antes de hacer cualquier cambio."
+  },
+  {
+   "t": "Agenda tu mantención",
+   "p": "Termo a muro $54.990 · termo a piso $74.990. Visita a domicilio en Santiago.",
+   "msg": "Hola Elemental, quiero cotizar una mantención preventiva."
+  }
+ ]
+}
