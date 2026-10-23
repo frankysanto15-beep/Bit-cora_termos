@@ -1,0 +1,70 @@
+// Ilustraciones vectoriales animadas para cada artículo (sin imágenes externas).
+// Cada una es un SVG 640x400 con el mismo lenguaje visual: fondo suave, termo en corte, acentos de marca.
+// Las animaciones usan clases definidas en static/motion.css (.ix-*), y se detienen con prefers-reduced-motion.
+
+const DEFS = (id) => `<defs>
+<linearGradient id="${id}bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EEF3FF"/><stop offset="1" stop-color="#DCE6FB"/></linearGradient>
+<linearGradient id="${id}shell" x1="0" x2="1"><stop offset="0" stop-color="#D7DEEA"/><stop offset=".32" stop-color="#FFFFFF"/><stop offset=".78" stop-color="#E6EBF3"/><stop offset="1" stop-color="#B8C2D3"/></linearGradient>
+<linearGradient id="${id}hot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8A6B"/><stop offset="1" stop-color="#C8283C"/></linearGradient>
+<linearGradient id="${id}cold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7DB6FF"/><stop offset="1" stop-color="#2556C8"/></linearGradient>
+<linearGradient id="${id}cu" x1="0" x2="1"><stop offset="0" stop-color="#9C5A2C"/><stop offset=".5" stop-color="#E39A5C"/><stop offset="1" stop-color="#9C5A2C"/></linearGradient>
+<linearGradient id="${id}steel" x1="0" x2="1"><stop offset="0" stop-color="#9AA6B8"/><stop offset=".5" stop-color="#F2F5FA"/><stop offset="1" stop-color="#8E9AAE"/></linearGradient>
+<radialGradient id="${id}glow"><stop offset="0" stop-color="#FF9A5C" stop-opacity=".85"/><stop offset="1" stop-color="#FF9A5C" stop-opacity="0"/></radialGradient>
+<filter id="${id}sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#1B2A5C" flood-opacity=".18"/></filter>
+</defs>`;
+const BG = id => `<rect width="640" height="400" rx="28" fill="url(#${id}bg)"/><g opacity=".5" stroke="#C9D6F2" stroke-width="1">${Array.from({ length: 9 }, (_, i) => `<line x1="${70 * i + 20}" y1="0" x2="${70 * i + 20}" y2="400"/>`).join('')}${Array.from({ length: 6 }, (_, i) => `<line x1="0" y1="${70 * i + 20}" x2="640" y2="${70 * i + 20}"/>`).join('')}</g>`;
+const bubbles = (x0, x1, y0, y1, n, cls = 'ix-bub') => Array.from({ length: n }, (_, i) => { const x = x0 + ((i * 37) % (x1 - x0)), y = y0 + ((i * 53) % (y1 - y0)), r = 3 + (i % 4) * 2; return `<circle class="${cls}" style="--d:${(i % 7) * .45}s;--t:${3 + (i % 3)}s" cx="${x}" cy="${y}" r="${r}" fill="none" stroke="#fff" stroke-width="2" opacity=".8"/>` }).join('');
+// termo en corte: x,y = esquina sup. izquierda; water: 'hot' | 'cold'; opts: sarro, anodo ('ok'|'worn'|false), glow
+function termo(id, x, y, { water = 'hot', sarro = 0, anodo = 'ok', glow = true, w = 200, h = 300 } = {}) {
+  const r = w / 2, ix = x + 22, iy = y + 26, iw = w - 44, ih = h - 52;
+  const s = [`<g filter="url(#${id}sh)"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="url(#${id}shell)" stroke="#1B2A5C" stroke-width="3"/></g>`];
+  s.push(`<clipPath id="${id}clip"><rect x="${ix}" y="${iy}" width="${iw}" height="${ih}" rx="${iw / 2}"/></clipPath><g clip-path="url(#${id}clip)"><rect x="${ix}" y="${iy}" width="${iw}" height="${ih}" fill="url(#${id}${water})" class="${water === 'hot' ? 'ix-warm' : ''}"/>`);
+  s.push(bubbles(ix + 10, ix + iw - 10, iy + 30, iy + ih - 20, 14));
+  if (anodo) s.push(`<rect x="${ix + iw - 46}" y="${iy + 6}" width="14" height="${ih * .7}" rx="7" fill="${anodo === 'ok' ? `url(#${id}steel)` : '#8A7358'}"/>` + (anodo === 'worn' ? Array.from({ length: 6 }, (_, i) => `<circle cx="${ix + iw - 39 + (i % 2 ? 4 : -4)}" cy="${iy + 30 + i * 26}" r="4" fill="#5C4A36"/>`).join('') : ''));
+  if (glow) s.push(`<ellipse class="ix-glow" cx="${ix + iw / 2 - 10}" cy="${iy + ih - 70}" rx="70" ry="80" fill="url(#${id}glow)"/>`);
+  s.push(`<path d="M${ix + iw / 2 - 40} ${iy + ih + 10} V${iy + ih - 110} a30 30 0 0 1 60 0 V${iy + ih + 10}" fill="none" stroke="${glow ? '#FF7A3D' : '#8C6A55'}" stroke-width="12" stroke-linecap="round" class="${glow ? 'ix-res' : ''}"/>`);
+  if (sarro) s.push(`<path d="M${ix} ${iy + ih} V${iy + ih - 28 * sarro} q20 -14 40 -4 t40 -6 t40 4 t40 -6 t40 2 V${iy + ih} Z" fill="#E9DFC6" stroke="#CDBE98" stroke-width="2"/>` + Array.from({ length: 10 }, (_, i) => `<circle cx="${ix + 12 + i * (iw / 10)}" cy="${iy + ih - 10 - (i % 3) * 6 * sarro}" r="${4 + (i % 3) * 2}" fill="#F4ECD8" stroke="#CDBE98"/>`).join(''));
+  s.push(`</g><rect x="${ix}" y="${iy}" width="${iw}" height="${ih}" rx="${iw / 2}" fill="none" stroke="#1B2A5C" stroke-width="4"/>`);
+  s.push(`<rect x="${x + r - 44}" y="${y + h + 2}" width="14" height="40" fill="url(#${id}cu)"/><rect x="${x + r + 30}" y="${y + h + 2}" width="14" height="40" fill="url(#${id}cu)"/><rect x="${x + r + 40}" y="${y + h + 12}" width="26" height="16" rx="5" fill="#E3262E"/>`);
+  return s.join('') }
+const badge = (x, y, t, sub, col = '#E3262E') => `<g class="ix-pop" style="--d:.4s"><rect x="${x}" y="${y}" width="${Math.max(120, t.length * 15 + 40, (sub || '').length * 8.2 + 36)}" height="${sub ? 64 : 44}" rx="14" fill="#fff" stroke="#DCE3F0"/><text x="${x + 18}" y="${y + 30}" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-weight="800" font-size="24" fill="${col}">${t}</text>${sub ? `<text x="${x + 18}" y="${y + 52}" font-family="ui-monospace,SF Mono,monospace" font-size="12" fill="#56618A" letter-spacing="1">${sub}</text>` : ''}</g>`;
+const txt = (x, y, s, size = 14, col = '#1B2A5C', w = 700) => `<text x="${x}" y="${y}" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-weight="${w}" font-size="${size}" fill="${col}">${s}</text>`;
+
+const K = {
+  mantencion: id => `${BG(id)}${termo(id, 90, 40, { sarro: 1, anodo: 'worn' })}
+<g transform="translate(340 70)"><g class="ix-pop" style="--d:.2s"><rect width="220" height="170" rx="20" fill="#fff" stroke="#DCE3F0"/><rect width="220" height="44" rx="20" fill="#1B2A5C"/><rect y="24" width="220" height="20" fill="#1B2A5C"/>${txt(18, 30, 'MANTENCIÓN', 14, '#fff', 800)}
+${Array.from({ length: 12 }, (_, i) => `<rect class="ix-cal" style="--d:${i * .12}s" x="${18 + (i % 4) * 48}" y="${60 + Math.floor(i / 4) * 34}" width="38" height="24" rx="6" fill="${i === 11 ? '#E3262E' : '#EAF0FB'}"/>`).join('')}</g></g>
+${badge(340, 262, 'cada 12 meses', 'AGUA DURA: 6–9 MESES')}`,
+  'no-calienta': id => `${BG(id)}${termo(id, 90, 40, { water: 'cold', glow: false, anodo: 'ok' })}
+<g transform="translate(380 60)"><rect x="34" y="0" width="28" height="200" rx="14" fill="#fff" stroke="#1B2A5C" stroke-width="3"/><circle cx="48" cy="216" r="28" fill="#2F6BEA" stroke="#1B2A5C" stroke-width="3"/><rect class="ix-therm" x="42" y="40" width="12" height="176" rx="6" fill="#2F6BEA"/>
+${[0, 1, 2, 3, 4].map(i => `<line x1="66" y1="${30 + i * 40}" x2="80" y2="${30 + i * 40}" stroke="#1B2A5C" stroke-width="3"/>`).join('')}${txt(90, 36, '60 °C', 15)}${txt(90, 196, '15 °C', 15, '#2F6BEA')}</g>
+<g class="ix-flake" transform="translate(560 90)">${[0, 60, 120].map(a => `<line x1="-22" y1="0" x2="22" y2="0" stroke="#7DB6FF" stroke-width="5" stroke-linecap="round" transform="rotate(${a})"/>`).join('')}</g>${badge(360, 320, '¿agua fría?', '6 CAUSAS FRECUENTES', '#2F6BEA')}`,
+  gotea: id => `${BG(id)}<g transform="translate(0 -90)">${termo(id, 210, 30, { anodo: false })}</g>
+<rect x="0" y="330" width="640" height="70" fill="#C9D6EE"/><ellipse class="ix-puddle" cx="330" cy="352" rx="120" ry="16" fill="#6FA8FF" opacity=".55"/>
+${[0, 1, 2].map(i => `<path class="ix-drop" style="--d:${i * .7}s" d="M332 262 q10 14 0 22 q-10 -8 0 -22z" fill="#4F8DF5"/>`).join('')}
+${[0, 1].map(i => `<ellipse class="ix-ring" style="--d:${i * 1.05}s" cx="332" cy="352" rx="20" ry="5" fill="none" stroke="#2F6BEA" stroke-width="2"/>`).join('')}
+${badge(450, 120, '¿normal?', 'VÁLVULA VS. ESTANQUE')}`,
+  anodo: id => `${BG(id)}<g transform="translate(150 50)"><rect x="0" y="0" width="34" height="270" rx="17" fill="url(#${id}steel)" stroke="#1B2A5C" stroke-width="3"/><g class="ix-spark" transform="translate(17 60)"><path d="M0 -18 L4 -4 L18 0 L4 4 L0 18 L-4 4 L-18 0 L-4 -4Z" fill="#fff"/></g>${txt(-14, 300, 'NUEVO', 16, '#1E9E5A', 800)}</g>
+<g transform="translate(300 50)"><rect x="12" y="0" width="10" height="270" rx="5" fill="#6E5A44"/><path class="ix-erode" d="M2 20 q15 -10 30 0 v40 q-14 10 -26 0 q-8 30 4 50 q-14 20 0 40 v80 q16 10 20 30 q-20 8 -28 -8z" fill="#8A7358" stroke="#5C4A36" stroke-width="2"/>${txt(-20, 300, 'GASTADO', 16, '#E3262E', 800)}</g>
+<g transform="translate(420 90)" class="ix-pop" style="--d:.3s"><rect width="180" height="150" rx="18" fill="#fff" stroke="#DCE3F0"/>${txt(18, 36, 'Se sacrifica', 17)}${txt(18, 60, 'para que el', 17)}${txt(18, 84, 'estanque no', 17)}${txt(18, 108, 'se oxide.', 17)}<rect x="18" y="124" width="${144}" height="8" rx="4" fill="#EAF0FB"/><rect class="ix-bar" x="18" y="124" width="144" height="8" rx="4" fill="#E3262E"/></g>`,
+  ruido: id => `${BG(id)}${termo(id, 90, 40, { sarro: 1.3, anodo: 'ok' })}
+${[0, 1, 2].map(i => `<path class="ix-wave" style="--d:${i * .45}s" d="M330 ${200 - i * 0} q${30 + i * 26} -${60 + i * 30} 0 -${120 + i * 60}" transform="translate(${i * 34} ${60 + i * 30})" fill="none" stroke="#2F6BEA" stroke-width="5" stroke-linecap="round"/>`).join('')}
+${badge(430, 120, 'blub blub', 'SARRO EN EL FONDO', '#2F6BEA')}${badge(430, 220, 'zzzt', 'SI ZUMBA: CORTA LA ENERGÍA')}`,
+  luz: id => `${BG(id)}<g transform="translate(90 60)" filter="url(#${id}sh)"><rect width="220" height="280" rx="22" fill="#fff" stroke="#1B2A5C" stroke-width="3"/><rect x="24" y="28" width="172" height="64" rx="10" fill="#14203F"/>
+<text x="40" y="72" font-family="ui-monospace,SF Mono,monospace" font-size="30" fill="#7CFFB0" class="ix-kwh">0 4 8 2 7</text>${txt(150, 116, 'kWh', 13, '#56618A')}<circle cx="110" cy="190" r="56" fill="#F4F7FC" stroke="#DCE3F0" stroke-width="3"/><line class="ix-disc" x1="110" y1="190" x2="110" y2="142" stroke="#E3262E" stroke-width="5" stroke-linecap="round" style="transform-origin:110px 190px"/></g>
+<g transform="translate(370 70)"><circle cx="100" cy="100" r="90" fill="#fff" stroke="#DCE3F0" stroke-width="3"/><path d="M30 130 A75 75 0 1 1 170 130" fill="none" stroke="#EAF0FB" stroke-width="16" stroke-linecap="round"/><path class="ix-arc" d="M30 130 A75 75 0 1 1 170 130" fill="none" stroke="#1E9E5A" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>${txt(58, 112, '55–60 °C', 26, '#1B2A5C', 800)}${txt(70, 140, 'ideal', 15, '#1E9E5A')}</g>
+${badge(380, 300, 'menos sarro', '= MENOS CONSUMO', '#1E9E5A')}`,
+  automatico: id => `${BG(id)}<g transform="translate(110 50)" filter="url(#${id}sh)"><rect width="260" height="300" rx="20" fill="#E9EDF5" stroke="#1B2A5C" stroke-width="3"/><rect x="20" y="20" width="220" height="40" rx="8" fill="#fff"/>${txt(36, 47, 'TABLERO', 15, '#56618A', 800)}
+${[0, 1, 2, 3].map(i => `<g transform="translate(${30 + i * 52} 90)"><rect width="40" height="120" rx="8" fill="#fff" stroke="#B9C3D3" stroke-width="2"/><rect class="${i === 2 ? 'ix-trip' : ''}" x="10" y="${i === 2 ? 18 : 18}" width="20" height="40" rx="5" fill="${i === 2 ? '#E3262E' : '#1B2A5C'}" style="transform-origin:20px 60px"/>${txt(6, 146, i === 2 ? 'TERMO' : `C${i + 1}`, 11, i === 2 ? '#E3262E' : '#56618A', 800)}</g>`).join('')}</g>
+<g class="ix-zap" transform="translate(440 110)"><path d="M40 0 L0 80 H34 L18 150 L80 50 H44 L62 0Z" fill="#FFD23F" stroke="#1B2A5C" stroke-width="3" stroke-linejoin="round"/></g>${badge(420, 290, 'no insistas', 'FUGA A TIERRA')}`,
+  'agua-cafe': id => `${BG(id)}<g transform="translate(160 40)"><rect x="0" y="0" width="200" height="26" rx="13" fill="url(#${id}steel)" stroke="#1B2A5C" stroke-width="3"/><path d="M150 26 v30 q0 20 -20 20 h-30" fill="none" stroke="#9AA6B8" stroke-width="18"/><ellipse cx="90" cy="86" rx="46" ry="14" fill="url(#${id}steel)" stroke="#1B2A5C" stroke-width="3"/>
+${Array.from({ length: 9 }, (_, i) => `<line class="ix-stream" style="--d:${i * .1}s" x1="${58 + i * 8}" y1="100" x2="${50 + i * 10}" y2="300" stroke-width="5" stroke-linecap="round"/>`).join('')}</g>
+<g class="ix-smell" transform="translate(420 110)">${[0, 1, 2].map(i => `<path style="--d:${i * .4}s" d="M${i * 34} 120 q-14 -20 0 -40 t0 -40 t0 -40" fill="none" stroke="#8BA34A" stroke-width="5" stroke-linecap="round"/>`).join('')}</g>${badge(400, 290, 'óxido u olor', 'SEÑAL DEL ÁNODO', '#B06A2A')}`,
+  litros: id => `${BG(id)}${[[60, 140, 110, 170, '50–80 L', 1], [230, 100, 140, 210, '100–120 L', 3], [420, 60, 170, 250, '150 L+', 5]].map(([x, y, w, h, l, p], i) => `<g><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${w / 2}" fill="url(#${id}shell)" stroke="#1B2A5C" stroke-width="3"/><clipPath id="${id}c${i}"><rect x="${x + 14}" y="${y + 16}" width="${w - 28}" height="${h - 32}" rx="${(w - 28) / 2}"/></clipPath><g clip-path="url(#${id}c${i})"><rect class="ix-fill" style="--d:${i * .3}s" x="${x + 14}" y="${y + 16}" width="${w - 28}" height="${h - 32}" fill="url(#${id}hot)"/></g>
+${txt(x + w / 2 - l.length * 4.4, y + h + 30, l, 16, '#1B2A5C', 800)}${Array.from({ length: p }, (_, k) => `<g transform="translate(${x + w / 2 - p * 9 + k * 18} ${y + h + 44})"><circle cx="0" cy="6" r="6" fill="#2F6BEA"/><rect x="-6" y="14" width="12" height="14" rx="6" fill="#2F6BEA"/></g>`).join('')}</g>`).join('')}`,
+};
+const MAP = { 'cada-cuanto-mantencion': 'mantencion', 'termo-no-calienta': 'no-calienta', 'termo-gotea': 'gotea', 'anodo-de-magnesio': 'anodo', 'termo-hace-ruido': 'ruido', 'termo-gasta-luz': 'luz', 'salta-el-automatico': 'automatico', 'agua-cafe-o-mal-olor': 'agua-cafe', 'cuantos-litros-necesito': 'litros' };
+const BY_CAT = { mantencion: 'mantencion', fallas: 'no-calienta', seguridad: 'automatico', ahorro: 'luz' };
+export const ILLO_KINDS = Object.keys(K);
+export function illo(a, uid = 'i') { const kind = K[a.illo] ? a.illo : MAP[a.slug] || BY_CAT[a.cat] || 'mantencion'; const id = (uid + a.slug).replace(/[^a-z0-9]/gi, '');
+  return `<svg class="illo" viewBox="0 0 640 400" role="img" aria-label="Ilustración: ${a.title.replace(/"/g, '')}" xmlns="http://www.w3.org/2000/svg">${DEFS(id)}${K[kind](id)}</svg>` }

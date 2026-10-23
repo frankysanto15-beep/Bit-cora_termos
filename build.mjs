@@ -1,6 +1,7 @@
 // Bitácora del Termo — generador estático (sin dependencias). Netlify ejecuta: node build.mjs → carpeta dist/
 import fs from 'node:fs';
 import path from 'node:path';
+import { illo } from './illus.mjs';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const DIST = path.join(ROOT, 'dist');
@@ -37,7 +38,7 @@ function head({ title, desc, url, type = 'website', jsonld = [] }) {
 <meta name="theme-color" content="#1B2A5C">
 <link rel="icon" type="image/png" href="/static/gear.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Onest:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap">
 <link rel="stylesheet" href="/static/styles.css">
 <link rel="stylesheet" href="/static/motion.css">
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
@@ -61,7 +62,7 @@ const FOOT = `<footer><div class="wrap"><span>© ${new Date().getFullYear()} Ele
 <script>window.WA_NUM='${WA_NUM}'</script><script src="/static/app.js" defer></script>
 </body></html>`;
 
-const card = (a, featured) => `<a class="card${featured ? ' featured' : ''}" href="/${a.slug}/" data-cat="${a.cat}" data-text="${esc((a.title + ' ' + a.dek + ' ' + a.keys).toLowerCase())}">${STEAM}<div class="meta"><span class="tag ${a.cat}">${CAT[a.cat]}</span><span>${a.read} min</span></div><h3 style="view-transition-name:t-${a.slug}">${a.title}</h3><p>${a.dek}</p><span class="go">Leer respuesta ${ARROW}</span></a>`;
+const card = (a, featured) => `<a class="card${featured ? ' featured' : ''}" href="/${a.slug}/" data-cat="${a.cat}" data-text="${esc((a.title + ' ' + a.dek + ' ' + a.keys).toLowerCase())}"><div class="thumb">${illo(a, 'c')}</div>${STEAM}<div class="meta"><span class="tag ${a.cat}">${CAT[a.cat]}</span><span>${a.read} min</span></div><h3 style="view-transition-name:t-${a.slug}">${a.title}</h3><p>${a.dek}</p><span class="go">Leer respuesta ${ARROW}</span></a>`;
 
 function inlineAd(v) { return `<aside class="inline-ad reveal"><span class="lg"><img src="/static/gear.png" alt="" width="62" height="45"></span><div><h4>${v.t}</h4><p>${v.p}</p><div class="row"><a class="wa-pill" href="${wa(v.msg)}" target="_blank" rel="noopener">${WA_SVG}<span>Escribir a Elemental</span></a><button class="num-copy" type="button" data-copy>${WA_TXT}</button></div></div></aside>` }
 
@@ -80,7 +81,7 @@ function home() {
 <section class="section"><div class="wrap">
 <div class="sec-head"><div><span class="eyebrow">Biblioteca</span><h2>Preguntas que nos hacen todos los días</h2></div>
 <div class="filters" id="filters">${['todas', ...Object.keys(CAT)].map((c, i) => `<button data-cat="${c}" aria-pressed="${i === 0}">${c === 'todas' ? 'Todo' : CAT[c]}</button>`).join('')}</div></div>
-<div class="grid" id="grid">${ARTS.map((a, i) => card(a, i === 0)).join('')}<div class="empty" id="empty" hidden>No encontramos un artículo sobre eso. Escríbenos por WhatsApp al <b>${WA_TXT}</b> y te respondemos directamente.</div></div>
+<div class="grid" id="grid">${ARTS.map((a, i) => { const rem = (ARTS.length + 1) % 3; const last = i === ARTS.length - 1 && i > 0 && rem; return last ? card(a, false).replace('class="card"', `class="card wide wide${rem === 1 ? 3 : 2}"`) : card(a, i === 0) }).join('')}<div class="empty" id="empty" hidden>No encontramos un artículo sobre eso. Escríbenos por WhatsApp al <b>${WA_TXT}</b> y te respondemos directamente.</div></div>
 </div></section>
 <section class="strip"><div class="wrap"><img src="/static/logo.png" alt="Elemental Asistencia Técnica" width="96" height="93"><div><h3>¿Prefieres que lo revise un técnico?</h3><p>Mantención preventiva, reparación e instalación de termos eléctricos. Técnicos calificados, visita a domicilio.</p></div>
 <div class="prices"><div class="price"><small>Mantención termo a muro</small><b>$54.990</b></div><div class="price"><small>Mantención termo a piso</small><b>$74.990</b></div></div></div></section>
@@ -99,8 +100,8 @@ function article(a) {
   const s = a.ads[0];
   return head({ title: `${a.title} | Bitácora del Termo`, desc: strip(a.quick).slice(0, 158), url, type: 'article', jsonld: ld }) + TOPBAR + `
 <article class="article">
-<div class="art-head"><div class="hero-bg soft" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span></div><div class="wrap"><a class="back" href="/">← Volver a la Bitácora</a><span class="tag ${a.cat}">${CAT[a.cat]}</span><h1 style="view-transition-name:t-${a.slug}">${a.title}</h1>
-<div class="byline"><span class="av"><img src="/static/gear.png" alt="" width="28" height="20"></span><span><b>Equipo técnico Elemental</b> · <time datetime="${a.iso}">${a.date}</time> · ${a.read} min de lectura</span></div></div></div>
+<div class="art-head"><div class="hero-bg soft" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span></div><div class="wrap head-grid"><div class="head-txt"><a class="back" href="/">← Volver a la Bitácora</a><span class="tag ${a.cat}">${CAT[a.cat]}</span><h1 style="view-transition-name:t-${a.slug}">${a.title}</h1>
+<div class="byline"><span class="av"><img src="/static/gear.png" alt="" width="28" height="20"></span><span><b>Equipo técnico Elemental</b> · <time datetime="${a.iso}">${a.date}</time> · ${a.read} min de lectura</span></div></div><figure class="hero-fig">${illo(a, 'h')}<figcaption>Ilustración de referencia · Elemental</figcaption></figure></div></div>
 <div class="wrap layout"><div class="prose"><div class="quick"><span class="eyebrow">Respuesta corta</span><p>${a.quick}</p></div>${withIds}${faq}</div>
 <aside class="side" aria-label="Elemental Asistencia Técnica"><div class="ad" id="sideAd"><div class="top-ad"><div class="logo-box"><img src="/static/logo.png" alt="Elemental Asistencia Técnica" width="92" height="89"></div><h4>${s.side}</h4><p>${s.sideP}</p></div>
 <div class="body"><div class="gauge"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 44a24 24 0 1 1 48 0" fill="none" stroke="var(--line)" stroke-width="7" stroke-linecap="round"/><path id="gArc" d="M8 44a24 24 0 1 1 48 0" fill="none" stroke="url(#gg)" stroke-width="7" stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="113"/><defs><linearGradient id="gg"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#E3262E"/></linearGradient></defs><line id="gNeedle" x1="32" y1="44" x2="32" y2="22" stroke="var(--fg)" stroke-width="3" stroke-linecap="round" style="transform-origin:32px 44px;transform:rotate(-90deg);transition:transform .2s"/></svg><div class="lbl">Mantención preventiva<b>desde $54.990</b></div></div>
