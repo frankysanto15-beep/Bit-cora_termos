@@ -1,0 +1,155 @@
+/* ============ Bitácora del Termo · capa visual v2 (motion + acabados) ============ */
+@property --ang { syntax: "<angle>"; inherits: false; initial-value: 0deg }
+@property --heat { syntax: "<number>"; inherits: true; initial-value: 0 }
+@view-transition { navigation: auto }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2, .8, .2, 1) }
+::view-transition-old(root) { animation-name: vt-out }
+::view-transition-new(root) { animation-name: vt-in }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-12px) scale(.985); filter: blur(4px) } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(14px) scale(1.01); filter: blur(4px) } }
+::view-transition-group(*) { animation-duration: .55s; animation-timing-function: cubic-bezier(.2, .8, .2, 1) }
+
+:root { --ease: cubic-bezier(.2, .8, .2, 1); --spring: cubic-bezier(.34, 1.56, .64, 1); --glass: color-mix(in srgb, var(--navy) 78%, transparent) }
+html { scrollbar-gutter: stable }
+body { font-optical-sizing: auto; text-rendering: optimizeLegibility }
+::selection { background: color-mix(in srgb, var(--red) 30%, transparent) }
+
+/* grain over dark surfaces */
+.hero::after, .remind::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
+.remind { position: relative; overflow: hidden }
+
+/* ---------- header: glass that tightens on scroll */
+.top { transition: background .35s var(--ease), box-shadow .35s var(--ease) }
+.top .wrap { transition: padding .35s var(--ease) }
+.top.scrolled { background: var(--glass); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); box-shadow: 0 10px 30px rgba(10, 18, 50, .25) }
+.top.scrolled .wrap { padding-block: 6px }
+.brand .chip { transition: transform .5s var(--spring) }
+.brand:hover .chip { transform: rotate(-14deg) scale(1.06) }
+.nav a { position: relative; transition: color .2s, background .2s }
+.nav a::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; background: var(--red); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease) }
+.nav a:hover::after, .nav a[aria-current="true"]::after { transform: scaleX(1) }
+/* heat bar driven by the page scroll where supported */
+@supports (animation-timeline: scroll()) {
+  .heat i { width: 100% !important; transform-origin: left; animation: heatGrow linear both; animation-timeline: scroll(root) }
+  @keyframes heatGrow { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+}
+
+/* ---------- shine + magnetic buttons */
+.wa-pill, .wa-big, .search button, .rf button { position: relative; overflow: hidden; isolation: isolate; transition: transform .35s var(--spring), box-shadow .3s var(--ease) }
+.wa-pill::before, .wa-big::before, .search button::before, .rf button::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%); transform: translateX(-120%); transition: transform .7s var(--ease) }
+.wa-pill:hover::before, .wa-big:hover::before, .search button:hover::before, .rf button:hover::before { transform: translateX(120%) }
+.wa-big { animation: breathe 3.2s ease-in-out infinite }
+@keyframes breathe { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--wa) 18%, transparent) } }
+[data-magnetic] { will-change: transform }
+
+/* ---------- hero */
+.hero { isolation: isolate }
+.hero-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none }
+.orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; animation: drift 18s ease-in-out infinite alternate }
+.o1 { width: 520px; height: 520px; left: -120px; top: -160px; background: radial-gradient(circle, #2F6BEA, transparent 70%) }
+.o2 { width: 460px; height: 460px; right: -80px; top: 10%; background: radial-gradient(circle, #E3262E, transparent 70%); animation-duration: 22s; opacity: .42 }
+.o3 { width: 380px; height: 380px; left: 35%; bottom: -200px; background: radial-gradient(circle, #6C4CF0, transparent 70%); animation-duration: 26s; opacity: .35 }
+@keyframes drift { to { transform: translate(80px, 60px) scale(1.15) } }
+.grid-lines { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse at 70% 40%, #000 20%, transparent 70%) }
+.hero-bg.soft .orb { opacity: .18 }
+.art-head { position: relative; isolation: isolate; overflow: hidden }
+/* word-by-word headline */
+.split .w { display: inline-block; overflow: clip; vertical-align: bottom; padding-bottom: .06em }
+.split .w > span { display: inline-block; animation: wordUp .9s var(--ease) both; animation-delay: calc(var(--i) * 55ms + 80ms) }
+@keyframes wordUp { from { transform: translateY(105%) rotate(4deg); filter: blur(6px) } }
+.hero h1 em { display: inline }
+.hero h1 em::after { animation-delay: .75s }
+/* stats */
+.stats { display: flex; gap: 28px; margin-top: 26px; flex-wrap: wrap }
+.stats div { display: grid; gap: 2px }
+.stats b { font: 800 34px/1 var(--display); color: #fff; font-variant-numeric: tabular-nums }
+.stats span { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #9FB3EE }
+/* tank float + glass */
+.tank { animation: floaty 7s ease-in-out infinite }
+@keyframes floaty { 50% { transform: translateY(-12px) } }
+.tank::before { content: ""; position: absolute; inset: 6% 12%; border-radius: 40%; background: radial-gradient(circle at 50% 60%, rgba(255, 110, 90, .35), transparent 65%); filter: blur(30px); z-index: -1 }
+.tank .readout { backdrop-filter: blur(8px); background: color-mix(in srgb, #fff 88%, transparent); border: 1px solid rgba(255,255,255,.6); animation: readIn .8s .6s var(--spring) both }
+@keyframes readIn { from { transform: translateX(-24px) scale(.9); opacity: .001 } }
+@supports (animation-timeline: view()) {
+  .tank { animation: floaty 7s ease-in-out infinite, tankPar linear both; animation-timeline: auto, view(); animation-range: normal, exit 0% exit 100% }
+  @keyframes tankPar { to { translate: 0 -80px; scale: .92 } }
+}
+/* marquee of searched questions */
+.marquee { position: relative; overflow: hidden; border-top: 1px solid rgba(255,255,255,.1); padding-block: 14px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent) }
+.marquee .track { display: flex; gap: 18px; width: max-content; align-items: center; animation: marq 40s linear infinite }
+.marquee:hover .track { animation-play-state: paused }
+.marquee a { font: 600 15px var(--body); color: #E3EAFF; text-decoration: none; white-space: nowrap; padding: 6px 4px; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s }
+.marquee a:hover { color: #fff; border-color: var(--red) }
+.marquee i { color: var(--red); font-style: normal; font-size: 12px }
+@keyframes marq { to { transform: translateX(-50%) } }
+
+/* ---------- cards: spotlight, lift, animated ring on the featured one */
+.card { --mx: 50%; --my: 50%; transform-style: preserve-3d; transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .3s }
+.card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(420px circle at var(--mx) var(--my), color-mix(in srgb, var(--blue) 14%, transparent), transparent 45%) }
+.card:hover::after { opacity: 1 }
+.card:hover { transform: translateY(-6px) }
+.card h3 { transition: color .25s }
+.card:not(.featured):hover h3 { color: var(--blue) }
+.card.featured { background: linear-gradient(135deg, #1B2A5C, #24366F 55%, #2B2D6E) }
+.card.featured::before { content: ""; position: absolute; inset: 0; padding: 2px; border-radius: inherit; pointer-events: none;
+  background: conic-gradient(from var(--ang), transparent 0 60%, #E3262E 75%, #5B8CFF 88%, transparent); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: spin 6s linear infinite }
+@keyframes spin { to { --ang: 360deg } }
+.card.featured::after { background: radial-gradient(500px circle at var(--mx) var(--my), rgba(255,255,255,.1), transparent 45%) }
+.tag { transition: transform .3s var(--spring) }
+.card:hover .tag { transform: translateY(-2px) }
+.filters button { transition: background .25s, color .25s, border-color .25s, transform .3s var(--spring) }
+.filters button:active { transform: scale(.94) }
+.card[hidden] { display: none }
+.grid .card { animation: cardIn .6s var(--ease) both; animation-delay: calc(var(--n, 0) * 60ms) }
+@keyframes cardIn { from { transform: translateY(18px) scale(.98); opacity: .001 } }
+
+/* ---------- scroll-driven reveals (content is visible without support) */
+@supports (animation-timeline: view()) {
+  .reveal, .prose > h2, .prose > .spec, .prose > .note, .prose > .quick, .related .card, .strip .wrap > *, .sec-head {
+    animation: rise-in linear both; animation-timeline: view(); animation-range: entry 0% entry 55% }
+  @keyframes rise-in { from { opacity: .15; transform: translateY(28px) } }
+  .reveal.in { animation: rise-in linear both; animation-timeline: view() }
+}
+/* section headings underline draw */
+.prose h2 { position: relative; padding-bottom: 6px }
+.prose h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 64px; height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--red)); transform-origin: left }
+@supports (animation-timeline: view()) {
+  .prose h2::after { animation: drawLine linear both; animation-timeline: view(); animation-range: entry 20% cover 40% }
+  @keyframes drawLine { from { transform: scaleX(0) } }
+}
+.quick { position: relative; overflow: hidden }
+.quick::before { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 40%, color-mix(in srgb, var(--blue) 12%, transparent) 50%, transparent 60%); transform: translateX(-100%); animation: sheen 3.5s 1s var(--ease) 2 }
+@keyframes sheen { to { transform: translateX(100%) } }
+
+/* ---------- article sidebar ad: animated brand ring */
+.ad { position: relative; isolation: isolate }
+.ad::before { content: ""; position: absolute; inset: -2px; border-radius: 22px; z-index: -1; background: conic-gradient(from var(--ang), #1B2A5C, #2F6BEA, #E3262E, #1B2A5C); animation: spin 8s linear infinite; opacity: .9 }
+.ad .top-ad::before { content: ""; position: absolute; inset: 0; background: radial-gradient(260px circle at 20% 0%, rgba(91,140,255,.45), transparent 60%); animation: drift 12s ease-in-out infinite alternate }
+.ad .logo-box { transition: transform .5s var(--spring); box-shadow: 0 10px 24px rgba(0,0,0,.25) }
+.ad:hover .logo-box { transform: rotate(-4deg) scale(1.05) }
+.inline-ad { background: radial-gradient(120% 140% at 0% 0%, #2F6BEA 0%, #1B2A5C 45%, #141F48 100%); box-shadow: 0 24px 50px rgba(27,42,92,.25) }
+.inline-ad .lg { animation: bob 4s ease-in-out infinite }
+@keyframes bob { 50% { transform: translateY(-5px) rotate(-3deg) } }
+.toc a { transition: color .2s, padding .3s var(--ease) }
+.toc a.on { padding-left: 8px; border-left: 3px solid var(--red) }
+
+/* ---------- FAQ: smooth open (modern browsers) */
+.faq details { interpolate-size: allow-keywords }
+.faq details::details-content { block-size: 0; overflow: hidden; transition: block-size .4s var(--ease), content-visibility .4s allow-discrete }
+.faq details[open]::details-content { block-size: auto }
+.faq summary { transition: color .2s }
+.faq summary:hover { color: var(--blue) }
+
+/* ---------- mobile bar glass */
+.mbar { background: var(--glass); backdrop-filter: blur(14px) saturate(1.4); -webkit-backdrop-filter: blur(14px) saturate(1.4); border-top: 1px solid rgba(255,255,255,.12) }
+
+/* ---------- focus + reduced motion */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #5B8CFF; outline-offset: 3px }
+@media (max-width: 620px) { .stats { gap: 18px } .stats b { font-size: 28px } .orb { filter: blur(40px) } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none }
+  .split .w > span, .grid .card, .tank, .orb, .marquee .track, .card.featured::before, .ad::before, .wa-big, .inline-ad .lg { animation: none !important }
+  .reveal, .prose > h2, .prose > .spec, .prose > .note, .prose > .quick, .related .card, .strip .wrap > *, .sec-head, .prose h2::after, .heat i { animation: none !important }
+}

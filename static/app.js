@@ -55,3 +55,27 @@
       if (!reduce) requestAnimationFrame(draw) }
     requestAnimationFrame(draw) }
 })();
+// ===== capa de interacción v2
+(() => {
+  const $$ = s => [...document.querySelectorAll(s)], reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, fine = matchMedia('(pointer: fine)').matches;
+  // header glass on scroll
+  const top = document.querySelector('.top'); const hdr = () => top && top.classList.toggle('scrolled', scrollY > 24); addEventListener('scroll', hdr, { passive: true }); hdr();
+  // stagger index for cards
+  $$('.grid').forEach(g => [...g.children].forEach((c, i) => c.style.setProperty('--n', Math.min(i, 8))));
+  if (reduce) return;
+  // spotlight + gentle tilt on cards
+  if (fine) $$('.card').forEach(c => { c.addEventListener('pointermove', e => { const r = c.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top; c.style.setProperty('--mx', x + 'px'); c.style.setProperty('--my', y + 'px');
+      c.style.transform = `translateY(-6px) perspective(900px) rotateX(${(.5 - y / r.height) * 4}deg) rotateY(${(x / r.width - .5) * 5}deg)` });
+    c.addEventListener('pointerleave', () => { c.style.transform = '' }) });
+  // magnetic CTAs
+  if (fine) $$('.wa-pill, .wa-big, .search button').forEach(b => { b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px, ${(e.clientY - r.top - r.height / 2) * .28}px)` }); b.addEventListener('pointerleave', () => { b.style.transform = '' }) });
+  // count-up stats
+  const cnt = $$('[data-count]'); if (cnt.length && 'IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; io.unobserve(e.target); const el = e.target, n = +el.dataset.count, t0 = performance.now();
+      const step = t => { const k = Math.min(1, (t - t0) / 1400), v = Math.round(n * (1 - Math.pow(1 - k, 3))); el.textContent = v; if (k < 1) requestAnimationFrame(step) }; el.textContent = 0; requestAnimationFrame(step) })); cnt.forEach(el => io.observe(el)) }
+  // steam wisps above the hero tank
+  const tank = document.querySelector('.tank'); if (tank) { const cv = document.createElement('canvas'); cv.width = 360; cv.height = 220; cv.setAttribute('aria-hidden', 'true'); Object.assign(cv.style, { position: 'absolute', left: '0', right: '0', top: '-150px', width: '100%', height: '220px', pointerEvents: 'none' }); tank.appendChild(cv);
+    const g = cv.getContext('2d'), P = Array.from({ length: 26 }, (_, i) => ({ x: 140 + Math.random() * 80, y: 220 + Math.random() * 220, r: 14 + Math.random() * 26, s: .25 + Math.random() * .5, p: Math.random() * 6 }));
+    (function loop(t) { const out = document.getElementById('tempOut'), hot = out ? Math.max(0, (parseInt(out.textContent) - 30) / 30) : .5; g.clearRect(0, 0, 360, 220);
+      for (const q of P) { q.y -= q.s; q.x += Math.sin(t / 900 + q.p) * .35; if (q.y < -40) { q.y = 220 + Math.random() * 60; q.x = 140 + Math.random() * 80 } const a = Math.max(0, Math.min(1, q.y / 220)) * .22 * hot; const gr = g.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.r); gr.addColorStop(0, `rgba(255,255,255,${a})`); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.beginPath(); g.arc(q.x, q.y, q.r, 0, 7); g.fill() }
+      requestAnimationFrame(loop) })(0) }
+})();

@@ -11,6 +11,7 @@ const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', '
 const iso = d => { const m = /(\d+) de (\w+) de (\d{4})/.exec(d || ''); if (!m) return new Date().toISOString().slice(0, 10); return `${m[3]}-${String(MESES.indexOf(m[2]) + 1).padStart(2, '0')}-${m[1].padStart(2, '0')}` };
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const strip = s => String(s).replace(/<[^>]+>/g, '');
+const splitWords = s => { let i = 0; return s.split('|').map((part, j) => { const w = part.split(/(\s+)/).map(x => /\s+/.test(x) || !x ? x : `<span class="w" style="--i:${i++}"><span>${x}</span></span>`).join(''); return j === 1 ? `<em>${w}</em>` : w }).join('') };
 const wa = t => `https://wa.me/${WA_NUM}?text=${encodeURIComponent(t)}`;
 
 const ARTS = fs.readdirSync(path.join(ROOT, 'articles')).filter(f => f.endsWith('.json'))
@@ -38,6 +39,7 @@ function head({ title, desc, url, type = 'website', jsonld = [] }) {
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Onest:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="/static/styles.css">
+<link rel="stylesheet" href="/static/motion.css">
 ${jsonld.map(j => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n')}
 </head>
 <body${type === 'article' ? ' class="reading"' : ''}>`;
@@ -59,7 +61,7 @@ const FOOT = `<footer><div class="wrap"><span>© ${new Date().getFullYear()} Ele
 <script>window.WA_NUM='${WA_NUM}'</script><script src="/static/app.js" defer></script>
 </body></html>`;
 
-const card = (a, featured) => `<a class="card${featured ? ' featured' : ''}" href="/${a.slug}/" data-cat="${a.cat}" data-text="${esc((a.title + ' ' + a.dek + ' ' + a.keys).toLowerCase())}">${STEAM}<div class="meta"><span class="tag ${a.cat}">${CAT[a.cat]}</span><span>${a.read} min</span></div><h3>${a.title}</h3><p>${a.dek}</p><span class="go">Leer respuesta ${ARROW}</span></a>`;
+const card = (a, featured) => `<a class="card${featured ? ' featured' : ''}" href="/${a.slug}/" data-cat="${a.cat}" data-text="${esc((a.title + ' ' + a.dek + ' ' + a.keys).toLowerCase())}">${STEAM}<div class="meta"><span class="tag ${a.cat}">${CAT[a.cat]}</span><span>${a.read} min</span></div><h3 style="view-transition-name:t-${a.slug}">${a.title}</h3><p>${a.dek}</p><span class="go">Leer respuesta ${ARROW}</span></a>`;
 
 function inlineAd(v) { return `<aside class="inline-ad reveal"><span class="lg"><img src="/static/gear.png" alt="" width="62" height="45"></span><div><h4>${v.t}</h4><p>${v.p}</p><div class="row"><a class="wa-pill" href="${wa(v.msg)}" target="_blank" rel="noopener">${WA_SVG}<span>Escribir a Elemental</span></a><button class="num-copy" type="button" data-copy>${WA_TXT}</button></div></div></aside>` }
 
@@ -67,14 +69,14 @@ function home() {
   const ld = [{ '@context': 'https://schema.org', '@type': 'Blog', name: 'Bitácora del Termo', url: SITE + '/', publisher: { '@type': 'LocalBusiness', name: 'Elemental Asistencia Técnica', telephone: WA_TXT, areaServed: 'Santiago, Chile', image: SITE + '/static/logo.png' } }];
   return head({ title: 'Bitácora del Termo · Dudas sobre termos eléctricos | Elemental', desc: 'Respuestas claras sobre termos eléctricos: mantención, fallas, consumo y seguridad. Escritas por los técnicos de Elemental Asistencia Técnica, Santiago.', url: SITE + '/', jsonld: ld }) + TOPBAR + `
 <main id="home">
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="hero-bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span><span class="grid-lines"></span></div><div class="wrap">
 <div class="hero-anim"><span class="eyebrow" style="color:#FF9A9E">Dudas reales, respuestas de técnico</span>
-<h1>Lo que tu termo <em>no te dice</em>, te lo explicamos acá.</h1>
+<h1 class="split">${splitWords("Lo que tu termo |no te dice|, te lo explicamos acá.")}</h1>
 <p class="lead">Guías escritas por los técnicos de Elemental, a partir de lo que vemos cada semana en casas y departamentos de Santiago. Sin tecnicismos y con la respuesta corta primero.</p>
 <form class="search" id="searchForm" role="search"><input id="q" type="search" placeholder="Ej: mi termo no calienta" aria-label="Buscar una duda" autocomplete="off"><button type="submit">Buscar</button></form>
-<div class="asked">${ARTS.filter(a => a.asked).slice(0, 10).map(a => `<a href="/${a.slug}/">${a.asked}</a>`).join('')}</div></div>
+<div class="stats">${[[ARTS.length, 'guías publicadas'], [ARTS.reduce((s, a) => s + a.read, 0), 'minutos de lectura'], [Object.keys(CAT).length, 'categorías']].map(([n, l]) => `<div><b data-count="${n}">${n}</b><span>${l}</span></div>`).join('')}</div></div>
 <div class="tank" aria-hidden="true"><canvas id="tankCanvas" width="720" height="960"></canvas><div class="readout">TEMPERATURA<b id="tempOut">58 °C</b>estanque limpio</div></div>
-</div></section>
+</div><div class="marquee" aria-label="Lo más buscado"><div class="track">${[0, 1].map(k => ARTS.filter(a => a.asked).map(a => `<a href="/${a.slug}/"${k ? ' tabindex="-1" aria-hidden="true"' : ''}>${a.asked}</a>`).join('<i aria-hidden="true">✦</i>')).join('<i aria-hidden="true">✦</i>')}<i aria-hidden="true">✦</i></div></div></section>
 <section class="section"><div class="wrap">
 <div class="sec-head"><div><span class="eyebrow">Biblioteca</span><h2>Preguntas que nos hacen todos los días</h2></div>
 <div class="filters" id="filters">${['todas', ...Object.keys(CAT)].map((c, i) => `<button data-cat="${c}" aria-pressed="${i === 0}">${c === 'todas' ? 'Todo' : CAT[c]}</button>`).join('')}</div></div>
@@ -97,7 +99,7 @@ function article(a) {
   const s = a.ads[0];
   return head({ title: `${a.title} | Bitácora del Termo`, desc: strip(a.quick).slice(0, 158), url, type: 'article', jsonld: ld }) + TOPBAR + `
 <article class="article">
-<div class="art-head"><div class="wrap"><a class="back" href="/">← Volver a la Bitácora</a><span class="tag ${a.cat}">${CAT[a.cat]}</span><h1>${a.title}</h1>
+<div class="art-head"><div class="hero-bg soft" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span></div><div class="wrap"><a class="back" href="/">← Volver a la Bitácora</a><span class="tag ${a.cat}">${CAT[a.cat]}</span><h1 style="view-transition-name:t-${a.slug}">${a.title}</h1>
 <div class="byline"><span class="av"><img src="/static/gear.png" alt="" width="28" height="20"></span><span><b>Equipo técnico Elemental</b> · <time datetime="${a.iso}">${a.date}</time> · ${a.read} min de lectura</span></div></div></div>
 <div class="wrap layout"><div class="prose"><div class="quick"><span class="eyebrow">Respuesta corta</span><p>${a.quick}</p></div>${withIds}${faq}</div>
 <aside class="side" aria-label="Elemental Asistencia Técnica"><div class="ad" id="sideAd"><div class="top-ad"><div class="logo-box"><img src="/static/logo.png" alt="Elemental Asistencia Técnica" width="92" height="89"></div><h4>${s.side}</h4><p>${s.sideP}</p></div>
